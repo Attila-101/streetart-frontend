@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import EditForm from './editForm';
+import EditForm from './EditForm';
 import { deletePost } from '../../../actions/posts';
 
 const Post = ({ post, currentId, setCurrentId }) => {

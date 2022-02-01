@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { getPosts } from './actions/posts';
-import Form from './components/Form/form';
-import Posts from './components/Posts/posts';
+import Nav from './components/Nav/Nav';
+import Form from './components/Form/Form';
+import Auth from './components/Auth/Auth';
+import Posts from './components/Posts/Posts';
 
 const App = () => {
-    const [currentId, setCurrentId] = useState(null);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [dispatch]);
-
     return (
-        <div>
-            <h1>Street Art</h1>
-            <Form currentId={currentId} setCurrentId={setCurrentId}/>
-            <Posts currentId={currentId} setCurrentId={setCurrentId}/>
-        </div>
+        <BrowserRouter> 
+            <div>
+                <Nav />
+                <Routes>
+                    <Route exact path="/" element={<Posts />} />
+                    <Route exact path="/auth" element={<Auth />} />
+                    <Route exact path="/form" element={<Form />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 

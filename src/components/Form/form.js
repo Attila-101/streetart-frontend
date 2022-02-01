@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { createPost } from '../../actions/posts';
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = () => {
     const [postData, setPostData] = useState({
         title: '', artist: '', year: '', image: ''
     });

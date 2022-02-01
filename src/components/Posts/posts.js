@@ -1,12 +1,21 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect }  from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Post from './Post/post';
+import { getPosts } from '../../actions/posts';
 
-const Posts = ({ currentId, setCurrentId }) => {
+import Post from './Post/Post';
+
+const Posts = () => {
     const posts = useSelector((state) => state.posts)
 
-    console.log(posts);
+    const [currentId, setCurrentId] = useState(null);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [currentId, dispatch]);
+
+    
     return (
         !posts.length ? <h3>No posts found</h3> : (
             <>

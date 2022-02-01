@@ -13,3 +13,8 @@
   padding: 20px;
   margin: 20px;
 }
+
+.grey-bg {
+  background-color: silver;
+  display: flex;
+}

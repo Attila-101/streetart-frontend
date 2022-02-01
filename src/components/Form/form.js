@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { createPost } from '../../actions/posts';
 
@@ -8,12 +9,13 @@ const Form = () => {
         title: '', artist: '', year: '', image: ''
     });
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(createPost(postData));
+        dispatch(createPost(postData, navigate));
     }
 
     return (

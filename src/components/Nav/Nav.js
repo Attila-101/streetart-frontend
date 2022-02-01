@@ -7,8 +7,7 @@ const Nav = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    //For testing purposes until we implement JWT
-    const [user, setUser] = useState(1);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const logout = () => {
         console.log('log out')
@@ -18,18 +17,15 @@ const Nav = () => {
         setUser(null);
     };
 
-    /*
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
     console.log(user);
      useEffect(() => {
 
         const token = user?.token;
-
-        //JWT...
         
         setUser(JSON.parse(localStorage.getItem('profile')))
-    }, [location]); */
+    }, [location]);
+
+    console.log(user.result.username);
 
     return (
         <div className="grey-bg">
@@ -37,7 +33,7 @@ const Nav = () => {
             <div>
                 {user ? (
                     <>
-                    <h6>User logged in</h6>
+                    <h6>{user.result.username} is logged in</h6>
                     <Link to="/form"><button>Add new</button></Link>
                     <button onClick={logout}>Logout</button>
                     </>

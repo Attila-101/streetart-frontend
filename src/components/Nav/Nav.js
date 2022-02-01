@@ -10,7 +10,6 @@ const Nav = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const logout = () => {
-        console.log('log out')
         dispatch({ type: 'LOGOUT' });
         navigate('/');
 
@@ -24,8 +23,6 @@ const Nav = () => {
         
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location]);
-
-    console.log(user.result.username);
 
     return (
         <div className="grey-bg">

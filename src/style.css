@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.maxwidth {
+  width: 250px;
+}
+
+.border-padding {
+  border: solid 1px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.grey-bg {
+  background-color: silver;
+  display: flex;
+}

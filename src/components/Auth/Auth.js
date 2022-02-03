@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-
+import ErrorHandler from '../Error/ErrorHandler'
 import { login, signup } from '../../actions/auth';
 
 const initialState = { username: '', email: '', password: ''}
@@ -11,6 +11,11 @@ const Auth = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(initialState);
+    const [errorHandler, setErrorHandler] = useState({
+        hasError: false,
+        message: "",
+      });
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,14 +23,15 @@ const Auth = () => {
         //console.log(formData);
 
         if (isSignup) {
-            dispatch(signup(formData, navigate))
+            dispatch(signup(formData, navigate,setErrorHandler))
         } else {
-            dispatch(login(formData, navigate))
+            dispatch(login(formData, navigate,setErrorHandler))
         }
     };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
+        setErrorHandler({hasError:false,messsage:''})
     };
 
     const switchMode = () => {
@@ -34,6 +40,8 @@ const Auth = () => {
 
     return (
         <div>
+            <ErrorHandler errorHandler={errorHandler || { hasError: false, message: "" }}
+      />
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <h1>{isSignup ? 'Sign up' : 'Log in'}</h1>
                 <div>

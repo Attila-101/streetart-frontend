@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { createPost } from '../../actions/posts';
@@ -8,6 +8,7 @@ const Form = () => {
     const [postData, setPostData] = useState({
         title: '', artist: '', year: '', image: ''
     });
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(createPost(postData, navigate));
+        dispatch(createPost({...postData,originalPoster: user?.result?.username}, navigate));
     }
 
     return (

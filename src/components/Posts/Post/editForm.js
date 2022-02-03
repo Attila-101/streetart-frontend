@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
-
 import { updatePost } from '../../../actions/posts';
 
 const EditForm = ({currentId, setCurrentId }) => {
     const [postData, setPostData] = useState({
         title: '', artist: '', year: '', image: ''
     });
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id == currentId) : null);
+    const [errorHandler, setErrorHandler] = useState({
+        hasError: false,
+        message: "",
+      });
+    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
  
     const dispatch = useDispatch();
 
@@ -19,7 +22,7 @@ const EditForm = ({currentId, setCurrentId }) => {
         e.preventDefault();
 
         console.log(`click on ${currentId}`);
-        dispatch(updatePost(currentId, postData));
+        dispatch(updatePost(currentId, postData,setErrorHandler));
     }
 
     return (

@@ -1,10 +1,11 @@
-import React,{ useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React,{ useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
 const Nav = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
@@ -14,6 +15,10 @@ const Nav = () => {
 
         setUser(null);
     };
+
+    useEffect(() => {        
+        setUser(JSON.parse(localStorage.getItem('profile')))
+    }, [location]);
 
 
     return (
